@@ -5,13 +5,18 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 
+import model.MyTableModel;
+
 public class PayTableP extends JPanel implements Tb_panel{
+	private static PayTableP payTableP;
 	private JTable table;
+	private static String  number;
+	private MyTableModel mymodel;
 
 	/**
 	 * Create the panel.
 	 */
-	public PayTableP() {
+	private PayTableP(String number) {
 		setLayout(null);
 		this.setSize(553,471);
 		
@@ -30,6 +35,7 @@ public class PayTableP extends JPanel implements Tb_panel{
 		table = new JTable();
 		table.setBounds(40, 103, 415, 298);
 		add(table);
+		mymodel.addColumn(new String[]{"姓名","基本工资","奖金"});
 	}
 
 	@Override
@@ -49,5 +55,13 @@ public class PayTableP extends JPanel implements Tb_panel{
 		// TODO 自动生成的方法存根
 		
 	}
-
+	public static PayTableP getInstance(String number){
+		if(number.equals(PayTableP.number))
+			return payTableP;
+		else {
+			payTableP = new PayTableP(number);
+			return payTableP;
+		}
+			
+	}
 }

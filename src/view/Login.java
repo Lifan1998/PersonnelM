@@ -133,8 +133,8 @@ public class Login extends JFrame {
 					if(account.getNumber().equals(number)){
 						//System.out.println(account.getNumber()+""+account.getPassword()+".");
 						if(account.getPassword().equals(pass)){
-							MainFrame mframe = MainFrame.getInstance();
-							mframe.setNumber(number);
+							MainFrame mframe = new MainFrame(number);
+							
 							mframe.setVisible(true);
 							frame.setVisible(false);
 							return;
