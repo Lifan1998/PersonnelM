@@ -5,11 +5,14 @@ import javax.swing.JToggleButton;
 
 import dao.PayDAO;
 import model.Pay;
+import panel.CheckBox;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
+
+import java.awt.Checkbox;
 import java.awt.Color;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -26,8 +29,11 @@ public class PayPanel extends JPanel implements Tb_panel{
 	private JLabel Label_1,Label_2,Label_3,Label_4,Label_5,Label_6,Label_7;
 	private JLabel newlabel;
 	JTextArea textArea;
+	private CheckBox checkBox;
+	String str = "2017-11-21";
 	
 	private PayPanel(String number) {
+		this.number = number;
 		setBackground(Color.LIGHT_GRAY);
 		setLayout(null);
 		this.setSize(553,471);
@@ -49,6 +55,7 @@ public class PayPanel extends JPanel implements Tb_panel{
 		add(newLabel);
 		
 		textArea = new JTextArea();
+		textArea.setEditable(false);
 		textArea.setBounds(83, 360, 261, 60);
 		add(textArea);
 		
@@ -56,17 +63,13 @@ public class PayPanel extends JPanel implements Tb_panel{
 		Label_1.setBounds(120, 102, 54, 15);
 		add(Label_1);
 		
-		JLabel Label_2 = new JLabel("New label");
+		Label_2 = new JLabel("New label");
 		Label_2.setBounds(120, 128, 54, 15);
 		add(Label_2);
 		
 		Label_3 = new JLabel("New label");
 		Label_3.setBounds(120, 157, 54, 15);
 		add(Label_3);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(10, 10, 533, 60);
-		add(panel);
 		
 		JLabel lblNewLabel = new JLabel("加班：");
 		lblNewLabel.setBounds(31, 185, 54, 15);
@@ -99,6 +102,10 @@ public class PayPanel extends JPanel implements Tb_panel{
 		Label_7 = new JLabel("New label");
 		Label_7.setBounds(120, 270, 54, 15);
 		add(Label_7);
+		
+		checkBox = new CheckBox();
+		
+		add(checkBox);
 	}
 
 	@Override
@@ -115,9 +122,13 @@ public class PayPanel extends JPanel implements Tb_panel{
 
 	@Override
 	public void updata() {
+		str = checkBox.getYear()+"-"+checkBox.getMonth()+"-21";
+		Date date = Date.valueOf(str);
 		PayDAO payDAO = new PayDAO();
 		try {
 			Pay pay = payDAO.getPay(number, date);
+			//System.out.println(pay.getNumber()+"fffffffff");
+			setDate(pay);
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -126,12 +137,13 @@ public class PayPanel extends JPanel implements Tb_panel{
 	}
 	private void setDate(Pay pay){
 		Label_1.setText(pay.getBase()+"");
+		//System.out.println(pay);
 		Label_2.setText(pay.getBonus()+"");
-		Label_3.setText(pay.getDeduct()+"");
-		Label_4.setText(pay.getExtra()+"");
-		Label_5.setText(pay.getSubsidy()+"");
-		Label_6.setText(pay.getOther()+"");
-		Label_7.setText(pay.getFact()+"");
+		Label_3.setText(String.valueOf(pay.getDeduct()));
+		Label_4.setText(String.valueOf(pay.getExtra()));
+		Label_5.setText(String.valueOf(pay.getSubsidy()));
+		Label_6.setText(String.valueOf(pay.getOther()));
+		Label_7.setText(String.valueOf(pay.getFact()));
 		textArea.setText(pay.getState());
 	}
 	
@@ -145,5 +157,11 @@ public class PayPanel extends JPanel implements Tb_panel{
 			return payPanel;
 		}
 			
+	}
+
+	@Override
+	public void save() {
+		// TODO 自动生成的方法存根
+		
 	}
 }

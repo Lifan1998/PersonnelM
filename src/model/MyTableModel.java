@@ -7,7 +7,7 @@ import javax.swing.table.DefaultTableModel;
 public class MyTableModel extends DefaultTableModel {
 
 	public MyTableModel() {
-		// TODO 自动生成的构造函数存根
+		super();
 	}
 	
 	public void edit() {

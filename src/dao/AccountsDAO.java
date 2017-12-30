@@ -17,7 +17,7 @@ public class AccountsDAO {
 			ResultSet result = db.excuteQuery("select * from accounts");
 			while(result.next()){
 				account = new Accounts(result.getString(1), result.getString(2));
-				System.out.println(result.getString(1)+"."+result.getString(2)+".");
+				//System.out.println(result.getString(1)+"."+result.getString(2)+".");
 				list.add(account);
 				
 			}

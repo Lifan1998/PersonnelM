@@ -32,6 +32,7 @@ public class DBO {
 	
 	public int excuteUpdate(String sql) throws SQLException{
 		stateMent = conn.createStatement();
+		
 		return stateMent.executeUpdate(sql);
 	}
 	public ResultSet excuteQuery(String sql) throws SQLException{

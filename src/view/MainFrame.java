@@ -107,7 +107,7 @@ public class MainFrame extends JFrame {
 				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				lblNewLabel_1.setText(df.format(new Date()));
 				try {
-					Thread.sleep(100);
+					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 					// TODO 自动生成的 catch 块
 					e.printStackTrace();
@@ -127,20 +127,43 @@ public class MainFrame extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
+		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(Color.ORANGE);
+		panel_5.setBounds(0, 0, 211, 22);
+		panel.add(panel_5);
+		panel_5.setLayout(new BorderLayout(0, 0));
+		
+		JLabel label = new JLabel(" 快速访问");
+		panel_5.add(label, BorderLayout.CENTER);
+		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 197, 211, 337);
 		contentPane.add(scrollPane);
 		
 		JPanel panel_3 = new JPanel();
 		scrollPane.setViewportView(panel_3);
+		panel_3.setLayout(null);
+		
+		JPanel panel_6 = new JPanel();
+		panel_6.setBackground(Color.ORANGE);
+		panel_6.setBounds(0, 0, 209, 24);
+		panel_3.add(panel_6);
+		panel_6.setLayout(new BorderLayout(0, 0));
+		
+		JLabel label_1 = new JLabel(" 资源管理器");
+		label_1.setBackground(Color.WHITE);
+		panel_6.add(label_1);
+		
+		JPanel panel_7 = new JPanel();
+		panel_7.setBounds(0, 24, 209, 311);
+		panel_3.add(panel_7);
 		
 		tabbled = new JTabbedPane(JTabbedPane.TOP);
 		tabbled.setBounds(231, 63, 553, 471);
 		contentPane.add(tabbled);
 		
 		JPanel panel_4 = new JPanel();
-		tabbled.addTab("New tab", null, panel_4, null);
-		//addJTabbled("个人工资", PayPanel.getInstance(number), true);
+		
 		MenuPanel menuP = new MenuPanel(number);
 		menuP.setLocation(0, 0);
 		contentPane.add(menuP);
@@ -166,5 +189,8 @@ public class MainFrame extends JFrame {
 		else 
 			panel.unedit();
 			
+	}
+	public static Tb_panel getJTabbed(){
+		return (Tb_panel) tabbled.getSelectedComponent();
 	}
 }

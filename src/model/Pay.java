@@ -106,5 +106,7 @@ public class Pay {
 	public Pay() {
 		
 	}
-
+	public String toString(){
+		return number+" "+base+" "+bonus+ " "+deduct+""+extra+" "+subsidy+" "+other+" "+fact+
+date.toString();	}
 }
