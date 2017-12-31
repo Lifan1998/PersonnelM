@@ -155,7 +155,7 @@ public class InforPanel extends JPanel implements Tb_panel{
 		textemail.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(118, 352, 379, 91);
+		scrollPane.setBounds(118, 352, 379, 75);
 		add(scrollPane);
 		
 		textstate = new JTextArea();

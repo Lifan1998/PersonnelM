@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
+import tools.MyActionListener;
 import tools.Tools;
 import view.AccountsPanel;
 import view.InforPanel;
@@ -27,47 +28,54 @@ import view.Tb_panel;
 
 public class MenuPanel extends JPanel {
 	String number;
+	JMenuBar meunbar;
+	JToolBar tool;
+	
 	/**
 	 * Create the panel.
 	 */
 	public MenuPanel(String number) {
 		this.number = number;
 		setSize(800, 53);
+		setLayout(null);
+		//setLayout(new BorderLayout(0, 0));
+		meunbar = new JMenuBar();
+		add(meunbar, BorderLayout.NORTH);
+		tool = new JToolBar();
+		add(tool);
+		
+		tool.setBounds(0,0,800, 35);
 		init(Tools.check(number));
 	}
+		
 	
 	
 	private void init(int check) {
-		setLayout(new BorderLayout(0, 0));
-		
+	
 		//菜单栏
-		JMenuBar meunbar = new JMenuBar();
-		JMenu meun0 = new JMenu("   编辑 ");
-		JMenu meun1 = new JMenu(" 查看 ");
-		JMenu menu_1 = new JMenu("新建");
 		
-		meunbar.add(menu_1);
+		JMenu meun2 = new JMenu("编辑");
+		JMenu meun3 = new JMenu("查看 ");
+		JMenu menu1 = new JMenu("新建");
 		
-		JMenuItem menuItem_10 = new JMenuItem("新建小组");
-		menu_1.add(menuItem_10);
-		JMenuItem menuItem_11 = new JMenuItem("新建员工");
-		menu_1.add(menuItem_11);
+		meunbar.add(menu1);
 		
-		meunbar.add(meun0);
+		JMenuItem menuItem11 = new JMenuItem("新建小组");
+		menu1.add(menuItem11);
+		JMenuItem menuItem12 = new JMenuItem("新建员工");
+		menu1.add(menuItem12);
 		
-		JMenuItem menuItem_3 = new JMenuItem("编辑我的信息");
-		meun0.add(menuItem_3);
-		menuItem_3.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				MainFrame.addJTabbled("个人信息", InforPanel.getInstance(number), true);
-				
-			}
-		});
-		JMenuItem menuItem_4 = new JMenuItem("编辑下级信息");
-		meun0.add(menuItem_4);
-		menuItem_4.addActionListener(new ActionListener() {
+		meunbar.add(meun2);
+		
+		JMenuItem menuItem21 = new JMenuItem("保存");
+		meun2.add(menuItem21);
+		
+		JMenuItem menuItem22 = new JMenuItem("编辑我的信息");
+		meun2.add(menuItem22);
+		menuItem22.addActionListener(new MyActionListener(number));
+		JMenuItem menuItem23 = new JMenuItem("编辑员工信息");
+		meun2.add(menuItem23);
+		menuItem23.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -76,13 +84,13 @@ public class MenuPanel extends JPanel {
 			}
 		});
 		
-		JMenuItem menuItem_5 = new JMenuItem("编辑下级工资");
-		meun0.add(menuItem_5);
+		JMenuItem menuItem24 = new JMenuItem("编辑员工工资");
+		meun2.add(menuItem24);
 		
-		JMenuItem menuItem_6 = new JMenuItem("编辑下级考勤");
-		meun0.add(menuItem_6);
-		meunbar.add(meun1);
-		menuItem_6.addActionListener(new ActionListener() {
+		JMenuItem menuItem25 = new JMenuItem("编辑员工考勤");
+		meun2.add(menuItem25);
+		meunbar.add(meun3);
+		menuItem25.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -91,9 +99,12 @@ public class MenuPanel extends JPanel {
 			}
 		});
 		
-		JMenuItem menuItem = new JMenuItem("查看我的工资");
-		meun1.add(menuItem);
-		menuItem.addActionListener(new ActionListener() {
+		JMenuItem menuItem31 = new JMenuItem("刷新");
+		meun3.add(menuItem31);
+		
+		JMenuItem menuItem32 = new JMenuItem("查看我的工资");
+		meun3.add(menuItem32);
+		menuItem32.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -102,9 +113,9 @@ public class MenuPanel extends JPanel {
 			}
 		});
 		
-		JMenuItem menuItem_1 = new JMenuItem("查看我的信息");
-		meun1.add(menuItem_1);
-		menuItem_1.addActionListener(new ActionListener() {
+		JMenuItem menuItem33 = new JMenuItem("查看我的信息");
+		meun3.add(menuItem33);
+		menuItem33.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -113,9 +124,9 @@ public class MenuPanel extends JPanel {
 			}
 		});
 		
-		JMenuItem menuItem_2 = new JMenuItem("查看我的考勤");
-		meun1.add(menuItem_2);
-		menuItem_2.addActionListener(new ActionListener() {
+		JMenuItem menuItem34 = new JMenuItem("查看我的考勤");
+		meun3.add(menuItem34);
+		menuItem34.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -124,9 +135,9 @@ public class MenuPanel extends JPanel {
 			}
 		});
 		
-		JMenuItem menuItem_7 = new JMenuItem("查看下级工资");
-		meun1.add(menuItem_7);
-		menuItem_7.addActionListener(new ActionListener() {
+		JMenuItem menuItem35 = new JMenuItem("查看员工工资");
+		meun3.add(menuItem35);
+		menuItem35.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -135,9 +146,9 @@ public class MenuPanel extends JPanel {
 			}
 		});
 		
-		JMenuItem menuItem_8 = new JMenuItem("查看下级信息");
-		meun1.add(menuItem_8);
-		menuItem_8.addActionListener(new ActionListener() {
+		JMenuItem menuItem36 = new JMenuItem("查看员工信息");
+		meun3.add(menuItem36);
+		menuItem36.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -146,9 +157,9 @@ public class MenuPanel extends JPanel {
 			}
 		});
 		
-		JMenuItem menuItem_9 = new JMenuItem("查看下级考勤");
-		meun1.add(menuItem_9);
-		menuItem_9.addActionListener(new ActionListener() {
+		JMenuItem menuItem37 = new JMenuItem("查看员工考勤");
+		meun3.add(menuItem37);
+		menuItem37.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -156,17 +167,17 @@ public class MenuPanel extends JPanel {
 				
 			}
 		});
-		add(meunbar, BorderLayout.NORTH);
 		
-		JMenu menu = new JMenu("系统");
-		meunbar.add(menu);
 		
-		JMenuItem menuItem_12 = new JMenuItem("开启/关闭");
-		menu.add(menuItem_12);
+		JMenu menu4 = new JMenu("系统");
+		meunbar.add(menu4);
 		
-		JMenuItem mntmZ = new JMenuItem("帐号密码");
-		menu.add(mntmZ);
-		mntmZ.addActionListener(new ActionListener() {
+		JMenuItem menuItem41 = new JMenuItem("开启/关闭");
+		menu4.add(menuItem41);
+		
+		JMenuItem menuItem42 = new JMenuItem("帐号密码");
+		menu4.add(menuItem42);
+		menuItem42.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -175,28 +186,31 @@ public class MenuPanel extends JPanel {
 			}
 		});
 		
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("密码设置");
-		menu.add(mntmNewMenuItem_3);
+		JMenuItem menuItem43 = new JMenuItem("密码设置");
+		menu4.add(menuItem43);
 		
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("退出");
-		menu.add(mntmNewMenuItem_2);
+		JMenuItem menuItem44 = new JMenuItem("退出");
+		menu4.add(menuItem44);
 		
-		JMenu meun2 = new JMenu(" 帮助 ");
-		meunbar.add(meun2);
+		JMenu meun5 = new JMenu(" 帮助 ");
+		meunbar.add(meun5);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("使用说明");
-		mntmNewMenuItem.setHorizontalAlignment(SwingConstants.LEFT);
-		meun2.add(mntmNewMenuItem);
+		JMenuItem menuItem51 = new JMenuItem("使用说明");
+		menuItem51.setHorizontalAlignment(SwingConstants.LEFT);
+		meun5.add(menuItem51);
 		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("关于");
-		meun2.add(mntmNewMenuItem_1);	
+		JMenuItem menuItem52 = new JMenuItem("关于");
+		meun5.add(menuItem52);	
 		
 		
 		
-		JToolBar tool = new JToolBar();
-		JButton btn1 = new JButton(new ImageIcon(MenuPanel.class.getResource("/res/info.jpg")));
-		JButton btn2 = new JButton(new ImageIcon(MenuPanel.class.getResource("/res/pay.jpg")));
-		JButton btn3 = new JButton(new ImageIcon(MenuPanel.class.getResource("/res/sign.jpg")));
+		
+		JButton btn1 = new JButton(new ImageIcon(MenuPanel.class.getResource("/res/geren.png")));
+		btn1.setToolTipText("我的信息");
+		JButton btn2 = new JButton(new ImageIcon(MenuPanel.class.getResource("/res/pay.png")));
+		btn2.setToolTipText("我的工资");
+		JButton btn3 = new JButton(new ImageIcon(MenuPanel.class.getResource("/res/Sign.png")));
+		btn3.setToolTipText("我的考勤");
 		tool.add(btn1);
 		tool.add(btn2);
 		tool.add(btn3);
@@ -226,51 +240,58 @@ public class MenuPanel extends JPanel {
 		});
 		//工具栏
 		tool.setRollover(true);
-		add(tool, BorderLayout.CENTER);
 		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setIcon(new ImageIcon(MenuPanel.class.getResource("/res/edit.PNG")));
-		tool.add(btnNewButton);
-		btnNewButton.addActionListener(new ActionListener() {
+		
+		JButton btn4 = new JButton();
+		btn4.setToolTipText("编辑");
+		btn4.setIcon(new ImageIcon(MenuPanel.class.getResource("/res/edit.PNG")));
+		tool.add(btn4);
+		btn4.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Tb_panel  panel = MainFrame.getJTabbed();
+				if(panel!=null)
 				panel.edit();
 				
 			}
 		});
 		
-		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setIcon(new ImageIcon(MenuPanel.class.getResource("/res/btn1.PNG")));
-		tool.add(btnNewButton_1);
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton btn5 = new JButton();
+		btn5.setToolTipText("保存");
+		btn5.setIcon(new ImageIcon(MenuPanel.class.getResource("/res/save.gif")));
+		tool.add(btn5);
+		btn5.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Tb_panel  panel = MainFrame.getJTabbed();
+				if(panel!=null)
 				panel.save();
 				
 			}
 		});
 		
-		JButton button = new JButton("");
-		button.setIcon(new ImageIcon(MenuPanel.class.getResource("/res/pM.PNG")));
-		tool.add(button);
-		button.addActionListener(new ActionListener() {
+		JButton btn6 = new JButton();
+		btn6.setToolTipText("刷新");
+		btn6.setIcon(new ImageIcon(MenuPanel.class.getResource("/res/update.png")));
+		tool.add(btn6);
+		btn6.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Tb_panel  panel = MainFrame.getJTabbed();
+				if(panel!=null)
 				panel.updata();
 				
 			}
 		});
 		
-		JButton btnNewButton_2 = new JButton("");
-		btnNewButton_2.setIcon(new ImageIcon(MenuPanel.class.getResource("/res/sign2.png")));
-		tool.add(btnNewButton_2);
-		btnNewButton_2.addActionListener(new ActionListener() {
+		JButton btn7 = new JButton();
+		btn7.setToolTipText("员工签到");
+		btn7.setIcon(new ImageIcon(MenuPanel.class.getResource("/res/sign2.png")));
+		tool.add(btn7);
+		btn7.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -279,41 +300,49 @@ public class MenuPanel extends JPanel {
 			}
 		});
 		
-		JButton btnNewButton_3 = new JButton("");
-		btnNewButton_3.setIcon(new ImageIcon(MenuPanel.class.getResource("/res/kai.png")));	
-		tool.add(btnNewButton_3);
+		JButton btn8 = new JButton();
+		btn8.setToolTipText("已开启");
+		btn8.setIcon(new ImageIcon(MenuPanel.class.getResource("/res/kai.png")));	
+		tool.add(btn8);
 		
 		
 		
 		if(check==1){
-			meun0.remove(menuItem_3);
-			meun1.remove(menuItem);
-			meun1.remove(menuItem_1);
-			meun1.remove(menuItem_2);
+			meun2.remove(menuItem22);
+			meun3.remove(menuItem32);
+			meun3.remove(menuItem33);
+			meun3.remove(menuItem34);
 			tool.remove(btn1);
 			tool.remove(btn2);
 			tool.remove(btn3);
 			
 		} else if(check==2){
-			menu.remove(mntmZ);
-			menu.remove(menuItem_12);
-			tool.remove(btnNewButton_3);
+			
+			menu4.remove(menuItem42);
+			menu4.remove(menuItem41);
+			tool.remove(btn8);
 			
 		} else if(check==3){
 			
-			meunbar.remove(menu_1);
-			meun0.remove(menuItem_4);
-			meun0.remove(menuItem_5);
-			meun0.remove(menuItem_6);
-			meun1.remove(menuItem_7);
-			meun1.remove(menuItem_8); 
-			meun1.remove(menuItem_9);	
-			menu.remove(mntmZ);
-			menu.remove(menuItem_12);
-			tool.remove(btnNewButton_3);
-			tool.remove(btnNewButton_2);
+			meunbar.remove(menu1);
+			meun2.remove(menuItem23);
+			meun2.remove(menuItem24);
+			meun2.remove(menuItem25);
+			meun3.remove(menuItem35);
+			meun3.remove(menuItem36); 
+			meun3.remove(menuItem37);	
+			menu4.remove(menuItem42);
+			menu4.remove(menuItem41);
+			tool.remove(btn8);
+			tool.remove(btn7);
 		}
 	
 	}
-
+	
+	public JMenuBar getMenuBar(){
+		return meunbar;
+	}
+	public JToolBar getTool(){
+		return tool;
+	}
 }

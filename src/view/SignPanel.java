@@ -60,7 +60,7 @@ public class SignPanel extends JPanel implements Tb_panel{
 			else date = Date.valueOf(str+"-"+i);
 			Sign_in sign = signDAO.getPersonSign(number, date);
 			if(sign==null)
-				jpan[i-1] = new JPan(i,"null");
+				jpan[i-1] = new JPan(i,"");
 			else jpan[i-1] = new JPan(i,sign.getSign());
 			panel.add(jpan[i-1]);
 		}
@@ -69,7 +69,7 @@ public class SignPanel extends JPanel implements Tb_panel{
 			date = Date.valueOf(str+"-31");
 			Sign_in sign = signDAO.getPersonSign(number, date);
 			if(sign==null)
-				jpan[30] = new JPan(31,"null");
+				jpan[30] = new JPan(31,"");
 			jpan[30] = new JPan(31,sign.getSign());
 			panel.add(jpan[30]);
 		

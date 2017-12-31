@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 import panel.MenuPanel;
+import panel.TreePanel;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -32,12 +33,14 @@ import java.awt.SystemColor;
 import javax.swing.JTextField;
 import javax.swing.JMenuItem;
 import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class MainFrame extends JFrame {
 	//private static final MainFrame frame = new MainFrame();
 	private String number;
 	private JPanel contentPane;
-	private JPanel panel_2;
+	
+	private TreePanel treePanel;
 	
 	/*private AccountsPanel accP_1;//账号密码表
 	private SignDayP signDayP_2;//本日签到
@@ -69,26 +72,19 @@ public class MainFrame extends JFrame {
 		setTitle("企业人事管理");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(300, 50, 800, 600);
+		setBounds(300, 50, 800, 588);
 		//this.setUndecorated(true);
 		
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.DARK_GRAY);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		//contentPane.setVisible(false);
-		
-		panel_2 = new JPanel();
-		panel_2.setForeground(Color.BLACK);
-		panel_2.setBackground(Color.WHITE);
-		panel_2.setBounds(0, 0, 794, 53);
-		contentPane.add(panel_2);
 		
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setForeground(Color.WHITE);
 		panel_1.setBackground(Color.BLACK);
-		panel_1.setBounds(1, 544, 791, 24);
+		panel_1.setBounds(0, 513, 791, 24);
 		contentPane.add(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
@@ -123,21 +119,22 @@ public class MainFrame extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(10, 63, 211, 124);
+		panel.setBounds(10, 44, 211, 124);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JPanel panel_5 = new JPanel();
 		panel_5.setBackground(Color.ORANGE);
-		panel_5.setBounds(0, 0, 211, 22);
+		panel_5.setBounds(0, 0, 211, 20);
 		panel.add(panel_5);
 		panel_5.setLayout(new BorderLayout(0, 0));
 		
 		JLabel label = new JLabel(" 快速访问");
+		label.setFont(new Font("宋体", Font.PLAIN, 12));
 		panel_5.add(label, BorderLayout.CENTER);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 197, 211, 337);
+		scrollPane.setBounds(10, 178, 211, 330);
 		contentPane.add(scrollPane);
 		
 		JPanel panel_3 = new JPanel();
@@ -146,27 +143,33 @@ public class MainFrame extends JFrame {
 		
 		JPanel panel_6 = new JPanel();
 		panel_6.setBackground(Color.ORANGE);
-		panel_6.setBounds(0, 0, 209, 24);
+		panel_6.setBounds(0, 0, 209, 20);
 		panel_3.add(panel_6);
 		panel_6.setLayout(new BorderLayout(0, 0));
 		
 		JLabel label_1 = new JLabel(" 资源管理器");
+		label_1.setFont(new Font("宋体", Font.PLAIN, 12));
 		label_1.setBackground(Color.WHITE);
 		panel_6.add(label_1);
 		
-		JPanel panel_7 = new JPanel();
-		panel_7.setBounds(0, 24, 209, 311);
-		panel_3.add(panel_7);
+		treePanel = new TreePanel(number);
+		treePanel.setBounds(0, 24, 209, 330);
+		panel_3.add(treePanel);
 		
 		tabbled = new JTabbedPane(JTabbedPane.TOP);
-		tabbled.setBounds(231, 63, 553, 471);
+		tabbled.setBounds(231, 44, 553, 464);
 		contentPane.add(tabbled);
+		
+		
 		
 		JPanel panel_4 = new JPanel();
 		
 		MenuPanel menuP = new MenuPanel(number);
-		menuP.setLocation(0, 0);
-		contentPane.add(menuP);
+		//menuP.setLocation(0, 0);
+		this.setJMenuBar(menuP.getMenuBar());
+		JToolBar tool = menuP.getTool();
+		//tool.setBounds(0, 0, 800, 50);
+		contentPane.add(tool);
 	}
 	
 	
@@ -179,16 +182,19 @@ public class MainFrame extends JFrame {
 	//添加、显示面板
 	public static void addJTabbled(String title,Tb_panel panel,Boolean isedit) {
 		tabbled.remove((Component) panel);
-		if(tabbled.getTabRunCount()>4)
-			tabbled.remove(0);
+		
 		panel.updata();//更新数据
 		tabbled.add(title,(Component) panel);
+		
 		if(isedit==true)
 			panel.edit();
 			
 		else 
 			panel.unedit();
 			
+	}
+	public static void f(){
+		System.out.println(tabbled.getSelectedIndex()+"//"+tabbled.getTabCount()+"//"+tabbled.getTabRunCount());
 	}
 	public static Tb_panel getJTabbed(){
 		return (Tb_panel) tabbled.getSelectedComponent();

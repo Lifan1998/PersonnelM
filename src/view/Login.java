@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.FontUIResource;
 import javax.swing.text.html.HTMLDocument.Iterator;
 
 import dao.AccountsDAO;
@@ -24,6 +25,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.MissingFormatArgumentException;
 import java.awt.FlowLayout;
@@ -50,6 +52,13 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		
+		
+		InitGlobalFont(new Font("宋体", Font.PLAIN, 12));
+
+		 UIManager.put("Menu.font", new Font("宋体", Font.PLAIN, 12));//设置Menubar的字体 
+		 UIManager.put("MenuItem.font", new Font("宋体", Font.PLAIN, 12));//设置MenuItem的字体
+
 		setResizable(false);
 		setTitle("登录");
 		setForeground(Color.BLACK);
@@ -156,5 +165,16 @@ public class Login extends JFrame {
 				
 			}
 		});
+	}
+	private static void InitGlobalFont(Font font) {
+	    FontUIResource fontRes = new FontUIResource(font);
+	    for (Enumeration<Object> keys = UIManager.getDefaults().keys();
+	         keys.hasMoreElements(); ) {
+	      Object key = keys.nextElement();
+	      Object value = UIManager.get(key);
+	      if (value instanceof FontUIResource) {
+	        UIManager.put(key, fontRes);
+	      }
+	    }
 	}
 }

@@ -3,6 +3,8 @@ package tools;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import dao.InforDAO;
+
 public class Tools {
 
 	public Tools() {
@@ -25,7 +27,10 @@ public class Tools {
 	public static int check(String number){
 		if(number.equals("100000"))
 			return 1;
-		return 2;
+		else if(new InforDAO().getTInfor(number).isEmpty()){
+			return 3;
+		} else
+			return 2;
 	}
 	
 	public static String getDefaultDate(){
@@ -61,7 +66,29 @@ public class Tools {
 	public static String getNowMonth(){
 		return getNowDate().substring(5, 7);
 	}
+	public static String getDeptNo(String number){
+		String deptNo =null;
+		int i = number.indexOf("0");
+		deptNo = number.substring(0,i-1);
+		return deptNo;
+		
+	}
+	
+	public static String getInforsql(String deptNo){
+		String sql = null;
+		int i = deptNo.length();
+		String str = "000000";
+		sql = deptNo+"_"+str.substring(1,6-i);
+		return sql;
+	}
 	public static void main(String[] args) {
 		System.out.println(Tools.getNowDate());
+		System.out.println(getDeptNo("110000"));
+		System.out.println(getInforsql("1"));
+		
+	}
+	public static String getInforsql1(String deptNo) {
+		
+		return deptNo +"0%";
 	}
 }

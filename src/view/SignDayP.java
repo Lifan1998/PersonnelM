@@ -37,9 +37,7 @@ public class SignDayP extends JPanel implements Tb_panel{
 		setLayout(null);
 		this.setSize(553,471);
 		this.number = number;
-		panel = new JPanel();
-		panel.setBounds(10, 68, 522, 342);
-		add(panel);
+		
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.LIGHT_GRAY);
@@ -65,6 +63,9 @@ public class SignDayP extends JPanel implements Tb_panel{
 
 	@Override
 	public void updata() {
+		panel = new JPanel();
+		panel.setBounds(10, 68, 522, 342);
+		add(panel);
 		jpan = new ArrayList<>();
 		InforDAO inforDAO = new InforDAO();
 		SignDAO signDAO = new SignDAO();
@@ -119,7 +120,7 @@ public class SignDayP extends JPanel implements Tb_panel{
 			this.number = str1;
 			setSize(522, 50);
 			setLayout(new GridLayout(1, 3));
-			lab1 = new JLabel("工号："+str1);
+			lab1 = new JLabel("工号："+str1+"   ");
 			lab2 = new JLabel("姓名："+str2);
 			check = new JComboBox<String>();
 			check.addItem("签到");
