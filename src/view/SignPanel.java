@@ -13,6 +13,11 @@ import java.awt.BorderLayout;
 import java.awt.Checkbox;
 import java.awt.GridLayout;
 import java.sql.Date;
+import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
+
+import java.awt.Font;
+import java.awt.Color;
 
 public class SignPanel extends JPanel implements Tb_panel{
 	private CheckBox checkBox;
@@ -24,6 +29,7 @@ public class SignPanel extends JPanel implements Tb_panel{
 	 * Create the panel.
 	 */
 	private SignPanel(String number) {
+		setBackground(Color.WHITE);
 		setLayout(null);
 		this.setSize(553,471);
 		this.number = number;
@@ -31,6 +37,9 @@ public class SignPanel extends JPanel implements Tb_panel{
 		
 		checkBox = new CheckBox();
 		add(checkBox);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		
 	}
 
 	@Override
@@ -90,6 +99,7 @@ public class SignPanel extends JPanel implements Tb_panel{
 	class JPan extends JPanel {
 		public JPan(int i,String sign){
 			this.setSize(76, 72);
+			setBorder(new LineBorder(Color.DARK_GRAY));
 			setLayout(new BorderLayout(3,1));
 			JLabel lab1 = new JLabel();
 			JLabel lab2 = new JLabel();
@@ -97,7 +107,10 @@ public class SignPanel extends JPanel implements Tb_panel{
 			add(lab2,BorderLayout.CENTER);
 			lab1.setText(i+"");
 			lab2.setText(sign);
-			
+			lab1.setFont(new Font("宋体", Font.PLAIN, 15));
+			lab1.setHorizontalAlignment(SwingConstants.CENTER);
+			lab2.setFont(new Font("宋体", Font.PLAIN, 20));
+			lab2.setHorizontalAlignment(SwingConstants.CENTER);
 		}
 	
 	}
@@ -107,5 +120,4 @@ public class SignPanel extends JPanel implements Tb_panel{
 		// TODO 自动生成的方法存根
 		
 	}
-	
 }

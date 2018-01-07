@@ -64,6 +64,7 @@ public class MenuPanel extends JPanel {
 		menu1.add(menuItem11);
 		JMenuItem menuItem12 = new JMenuItem("新建员工");
 		menu1.add(menuItem12);
+		menuItem12.addActionListener(new MyActionListener(number));
 		
 		meunbar.add(meun2);
 		

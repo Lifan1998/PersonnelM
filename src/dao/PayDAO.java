@@ -57,7 +57,7 @@ public class PayDAO {
 		String str = date.toString();
 		try {
 			ResultSet result = db.excuteQuery("select * from pay where number='"+number+"'and date ='"+str+"'");
-			result.next();
+			while(result.next())
 			pay = new Pay(result.getString(1),result.getInt(2),result.getInt(3),
 						result.getInt(4),result.getInt(5),result.getInt(6),result.getInt(7),
 						result.getInt(8),result.getString(9),result.getDate(10)

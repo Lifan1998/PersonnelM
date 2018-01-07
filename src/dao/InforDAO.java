@@ -84,6 +84,32 @@ public ArrayList<Infor> getDeptInfor(String deptNo){
 		return list;
 	
 	}
-	
+	public void insertInfor(Infor infor) {
+		String sql = "insert into infor(number,name,edu,tele,email,idcard) values ('"+infor.getNumber()
+						+"','"+infor.getName()+"','"+infor.getEdu()+"','"+infor.getTele()+"','"+infor.getEmail()
+						+"','"+infor.getIdcard()+"')";
+		try {
+			db.excuteUpdate(sql);
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+				
+	}
+	public void updateInfor(Infor infor1) {
+		// TODO 自动生成的方法存根
+		String sql = "update infor set edu = '"+infor1.getEdu()+"',sex = '"
+				+infor1.getSex()+"',marriage = '"+infor1.getMarriage()+"',home ='"
+				+infor1.getHome()+"',birth = '"+infor1.getBirth()+"',state = '"
+				+infor1.getState()+"',woork = '"+infor1.getWork()+"' where number = '"
+				+infor1.getNumber()+"'";
+		System.out.println(sql);
+		try {
+			db.excuteUpdate(sql);
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+	}	
 	
  }

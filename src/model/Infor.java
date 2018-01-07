@@ -28,14 +28,18 @@ public class Infor {
 		this.edu = edu;
 	}
 
-	public Infor(String number, String name, String sex, String idcard, Date work) {
+	
+	public Infor(String number, String name, String tele, String email, String idcard, String edu) {
 		super();
 		this.number = number;
 		this.name = name;
-		this.sex = sex;
+		this.tele = tele;
+		this.email = email;
 		this.idcard = idcard;
-		this.work = work;
+		this.edu = edu;
 	}
+
+
 	public Infor(){	
 	}
 

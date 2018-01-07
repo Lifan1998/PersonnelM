@@ -10,6 +10,8 @@ import model.Infor;
 
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
+import java.awt.Color;
+import java.sql.Date;
 
 public class InforPanel extends JPanel implements Tb_panel{
 	private static String number;
@@ -27,11 +29,13 @@ public class InforPanel extends JPanel implements Tb_panel{
 	private JTextField textemail;
 	private JTextArea textstate;
 	private JTextField textwork;
+	private Infor infor;
 
 	/**
 	 * Create the panel.
 	 */
 	private InforPanel(String number) {
+		setBackground(Color.WHITE);
 		this.number=number;
 		
 		setLayout(null);
@@ -160,29 +164,56 @@ public class InforPanel extends JPanel implements Tb_panel{
 		
 		textstate = new JTextArea();
 		scrollPane.setViewportView(textstate);
+		unedit();
 	}
 
 	@Override
 	public void edit() {
-		// TODO 自动生成的方法存根
+		textage.setEditable(true);
+		textbirth.setEditable(true);
+		textedu.setEditable(true);
+		textemail.setEditable(true);
+		texthome.setEditable(true);
+		textid.setEditable(true);
+		textmarri.setEditable(true);
+		textsex.setEditable(true);
+		textstate.setEditable(true);
+		textnumber.setEditable(true);
+		texttele.setEditable(true);
+		textwork.setEditable(true);
+		txtname.setEditable(true);
 		
 	}
 
 	@Override
 	public void unedit() {
-		// TODO 自动生成的方法存根
+		textage.setEditable(false);
+		textbirth.setEditable(false);
+		textedu.setEditable(false);
+		textemail.setEditable(false);
+		texthome.setEditable(false);
+		textid.setEditable(false);
+		textmarri.setEditable(false);
+		textsex.setEditable(false);
+		textstate.setEditable(false);
+		textnumber.setEditable(false);
+		texttele.setEditable(false);
+		textwork.setEditable(false);
+		txtname.setEditable(false);
 		
 	}
 
 	@Override
 	public void updata() {
 		InforDAO inforDAO = new InforDAO();
-		Infor infor = inforDAO.getPersonInfor(number);
+		infor = inforDAO.getPersonInfor(number);
 		setData(infor);	
 	}
 
 	private void setData(Infor infor) {
+		
 		textage.setText(infor.getAge()+"");
+		if(infor.getBirth()!=null)
 		textbirth.setText(infor.getBirth().toString());
 		textedu.setText(infor.getEdu());
 		textemail.setText(infor.getEmail());
@@ -193,6 +224,7 @@ public class InforPanel extends JPanel implements Tb_panel{
 		textsex.setText(infor.getSex());
 		texttele.setText(infor.getTele());
 		txtname.setText(infor.getName());
+		if(infor.getWork()!=null)
 		textwork.setText(infor.getWork().toString());
 		textstate.setText(infor.getState());
 		
@@ -211,8 +243,28 @@ public class InforPanel extends JPanel implements Tb_panel{
 	}
 
 	@Override
-	public void save() {
-		// TODO 自动生成的方法存根
+	public void save(){
+		new InforDAO().updateInfor(getData());
+		
+		
+		unedit();
+		
+	}
+	
+	private Infor getData(){ 
+		infor.setAge(Integer.parseInt(textage.getText()));
+		infor.setBirth(Date.valueOf(textbirth.getText()));
+		
+		
+		infor.setHome(texthome.getText());
+		infor.setMarriage(textmarri.getText());
+		infor.setSex(textsex.getText());
+		infor.setState(textstate.getText());
+		infor.setWork(Date.valueOf(textwork.getText()));
+		
+		return infor;
+		
+		
 		
 	}
 }

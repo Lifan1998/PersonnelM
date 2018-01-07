@@ -18,6 +18,7 @@ import model.Sign_in;
 import panel.CheckBox;
 import view.SignDayP.JPan;
 import java.awt.BorderLayout;
+import java.awt.Color;
 
 public class SignTableP extends JPanel implements Tb_panel {
 	
@@ -50,12 +51,12 @@ public class SignTableP extends JPanel implements Tb_panel {
 		
 		table= new JTable();
 		scrollPane.setViewportView(table);
-		
+		table.setSelectionBackground(Color.ORANGE) ;
 		
 	}
 
 	@Override
-	public void edit() {
+	public void edit(){
 		// TODO 自动生成的方法存根
 		
 	}

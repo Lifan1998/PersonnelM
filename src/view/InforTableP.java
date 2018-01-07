@@ -3,6 +3,7 @@ package view;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 import javax.swing.JComboBox;
@@ -19,6 +20,7 @@ public class InforTableP extends JPanel implements Tb_panel{
 	private static String number;
 	private JTable table;
 	private String[] str ={"工号","姓名","学历","电话","邮箱","身份证号"};
+	MyTableModel mymodel;
 
 	/**
 	 * Create the panel.
@@ -40,23 +42,27 @@ public class InforTableP extends JPanel implements Tb_panel{
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
+		table.setSelectionBackground(Color.ORANGE) ;
+		table.setFillsViewportHeight(true) ;
+		
+
 	}
 
 	@Override
 	public void edit() {
 		// TODO 自动生成的方法存根
-		
+		mymodel.edit();
 	}
 
 	@Override
 	public void unedit() {
-		// TODO 自动生成的方法存根
+		mymodel.unedit();
 		
 	}
 
 	@Override
 	public void updata() {
-		MyTableModel mymodel = new MyTableModel();
+		mymodel = new MyTableModel();
 		for(int i=0;i<str.length;i++)
 			mymodel.addColumn(str[i]);
 		InforDAO inforDAO = new InforDAO();
@@ -70,6 +76,8 @@ public class InforTableP extends JPanel implements Tb_panel{
 					infor.getIdcard()});
 		}
 		table.setModel(mymodel);
+		
+
 	}
 	
 	public static InforTableP getInstance(String number){
@@ -84,6 +92,6 @@ public class InforTableP extends JPanel implements Tb_panel{
 	@Override
 	public void save() {
 		// TODO 自动生成的方法存根
-		
+		mymodel.unedit();
 	}
 }

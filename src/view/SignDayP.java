@@ -63,6 +63,7 @@ public class SignDayP extends JPanel implements Tb_panel{
 
 	@Override
 	public void updata() {
+		//this.remove(panel);
 		panel = new JPanel();
 		panel.setBounds(10, 68, 522, 342);
 		add(panel);

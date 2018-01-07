@@ -6,6 +6,7 @@ import tools.Tools;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import java.awt.Color;
 
 public class CheckBox extends JPanel {
 	JComboBox comboBox;
@@ -14,6 +15,7 @@ public class CheckBox extends JPanel {
 	 * Create the panel.
 	 */
 	public CheckBox() {
+		setBackground(Color.WHITE);
 		setLayout(null);
 		setBounds(0, 0, 550, 50);
 		comboBox = new JComboBox();

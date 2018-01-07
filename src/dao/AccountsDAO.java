@@ -9,9 +9,15 @@ public class AccountsDAO {
 
 	private ArrayList<Accounts> list ;
 	private Accounts  account;
+	DBO db;
 	
 	public AccountsDAO() {
-		DBO db = DBO.getInstance();
+		db = DBO.getInstance();
+		
+		
+	}
+
+	public ArrayList<Accounts> getDate() {
 		list = new ArrayList<Accounts>();
 		try {
 			ResultSet result = db.excuteQuery("select * from accounts");
@@ -25,11 +31,17 @@ public class AccountsDAO {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		
+		return list;
 	}
 
-	public ArrayList<Accounts> getDate() {
-		return list;
+	public void insertAccout(Accounts acc) {
+		try {
+			db.excuteUpdate("insert into accounts values('"+acc.getNumber()+"','"+acc.getPassword()+"')");
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		
 	}
 
 	

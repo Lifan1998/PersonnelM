@@ -3,7 +3,10 @@ package tools;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JDialog;
+
 import view.AccountsPanel;
+import view.CreatUser;
 import view.InforPanel;
 import view.InforTableP;
 import view.MainFrame;
@@ -27,7 +30,9 @@ public class MyActionListener implements ActionListener {
 		Tb_panel  panel = MainFrame.getJTabbed();
 		switch(e.getActionCommand()){
 			case "新建小组":;break;
-			case "新建员工":;break;
+			case "新建员工":CreatUser dialog = new CreatUser();
+							dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+							dialog.setVisible(true);break;
 			case "刷新":  if(panel!=null)
 						panel.updata();
 						break;

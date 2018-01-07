@@ -16,6 +16,7 @@ import java.awt.Checkbox;
 import java.awt.Color;
 import java.sql.Date;
 import java.sql.SQLException;
+import javax.swing.JScrollPane;
 
 public class PayPanel extends JPanel implements Tb_panel{
 
@@ -31,76 +32,80 @@ public class PayPanel extends JPanel implements Tb_panel{
 	JTextArea textArea;
 	private CheckBox checkBox;
 	String str = "2017-11-21";
+	private JScrollPane scrollPane;
 	
 	private PayPanel(String number) {
 		this.number = number;
-		setBackground(Color.LIGHT_GRAY);
+		setBackground(Color.WHITE);
 		setLayout(null);
 		this.setSize(553,471);
 		
 		JLabel lblNewLabel_1 = new JLabel("基本工资：");
-		lblNewLabel_1.setBounds(31, 98, 63, 22);
+		lblNewLabel_1.setBounds(60, 95, 63, 22);
 		add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("奖金：");
-		lblNewLabel_2.setBounds(31, 128, 54, 15);
+		lblNewLabel_2.setBounds(60, 127, 54, 15);
 		add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("扣除：");
-		lblNewLabel_3.setBounds(31, 153, 54, 22);
+		lblNewLabel_3.setBounds(60, 152, 54, 22);
 		add(lblNewLabel_3);
 		
 		JLabel newLabel = new JLabel("详细：");
-		newLabel.setBounds(31, 353, 54, 15);
+		newLabel.setBounds(60, 322, 54, 15);
 		add(newLabel);
 		
-		textArea = new JTextArea();
-		textArea.setEditable(false);
-		textArea.setBounds(83, 360, 261, 60);
-		add(textArea);
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(123, 338, 312, 84);
+		add(scrollPane);
 		
-		Label_1 = new JLabel("New label");
-		Label_1.setBounds(120, 102, 54, 15);
+		textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
+		textArea.setEditable(false);
+		
+		Label_1 = new JLabel("");
+		Label_1.setBounds(156, 102, 54, 15);
 		add(Label_1);
 		
-		Label_2 = new JLabel("New label");
-		Label_2.setBounds(120, 128, 54, 15);
+		Label_2 = new JLabel("");
+		Label_2.setBounds(156, 127, 54, 15);
 		add(Label_2);
 		
-		Label_3 = new JLabel("New label");
-		Label_3.setBounds(120, 157, 54, 15);
+		Label_3 = new JLabel("");
+		Label_3.setBounds(156, 159, 54, 15);
 		add(Label_3);
 		
 		JLabel lblNewLabel = new JLabel("加班：");
-		lblNewLabel.setBounds(31, 185, 54, 15);
+		lblNewLabel.setBounds(60, 185, 54, 15);
 		add(lblNewLabel);
 		
 		JLabel lblNewLabel_5 = new JLabel("补贴：");
-		lblNewLabel_5.setBounds(31, 210, 54, 15);
+		lblNewLabel_5.setBounds(60, 223, 54, 15);
 		add(lblNewLabel_5);
 		
 		JLabel label = new JLabel("五险一金：");
-		label.setBounds(31, 235, 74, 15);
+		label.setBounds(60, 248, 74, 15);
 		add(label);
 		
 		newlabel = new JLabel("实发：");
-		newlabel.setBounds(31, 270, 54, 15);
+		newlabel.setBounds(60, 281, 54, 15);
 		add(newlabel);
 		
-		Label_4 = new JLabel("New label");
-		Label_4.setBounds(120, 185, 54, 15);
+		Label_4 = new JLabel("");
+		Label_4.setBounds(156, 185, 54, 15);
 		add(Label_4);
 		
-		Label_5 = new JLabel("New label");
-		Label_5.setBounds(120, 210, 54, 15);
+		Label_5 = new JLabel("");
+		Label_5.setBounds(156, 223, 54, 15);
 		add(Label_5);
 		
-		Label_6 = new JLabel("New label");
-		Label_6.setBounds(120, 235, 54, 15);
+		Label_6 = new JLabel("");
+		Label_6.setBounds(156, 248, 54, 15);
 		add(Label_6);
 		
-		Label_7 = new JLabel("New label");
-		Label_7.setBounds(120, 270, 54, 15);
+		Label_7 = new JLabel("");
+		Label_7.setBounds(156, 281, 54, 15);
 		add(Label_7);
 		
 		checkBox = new CheckBox();
