@@ -70,6 +70,24 @@ public class PayDAO {
 		
 		return pay;
 	}
+
+
+	public void addPay(Pay pay) {
+		
+		String sql = "insert into pay values ('"+pay.getNumber()+"','"+pay.getBase()
+			+"','"+pay.getBonus()+"','"+pay.getDeduct()+"','"+pay.getExtra()+"','"+pay.getSubsidy()+"','"
+			+pay.getOther()+"','"+pay.getFact()+"','"+pay.getState()+"','"+pay.getDate().toString()
+			+"')";
+		
+		//String sql1 = 
+		try {
+			db.excuteUpdate(sql);
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		
+	}
 	
 }
 

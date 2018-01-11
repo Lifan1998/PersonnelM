@@ -2,6 +2,7 @@ package model;
 
 public class Accounts {
 	private String number;
+	
 	private String password;
 	
 	public Accounts(String number, String password) {

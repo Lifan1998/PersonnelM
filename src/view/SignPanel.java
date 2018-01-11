@@ -79,7 +79,8 @@ public class SignPanel extends JPanel implements Tb_panel{
 			Sign_in sign = signDAO.getPersonSign(number, date);
 			if(sign==null)
 				jpan[30] = new JPan(31,"");
-			jpan[30] = new JPan(31,sign.getSign());
+			else
+				jpan[30] = new JPan(31,sign.getSign());
 			panel.add(jpan[30]);
 		
 		}

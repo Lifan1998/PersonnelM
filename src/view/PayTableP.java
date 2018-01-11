@@ -27,7 +27,9 @@ public class PayTableP extends JPanel implements Tb_panel{
 	private MyTableModel mymodel;
 	private CheckBox checkBox;
 	private String[] string = {"姓名","基本工资","奖金","扣除","加班","补贴","保险","总计"};
-
+	Date date ;
+	ArrayList<Infor> list_1 = null;
+	PayDAO payDAO = new PayDAO();
 	/**
 	 * Create the panel.
 	 */
@@ -63,8 +65,8 @@ public class PayTableP extends JPanel implements Tb_panel{
 	@Override
 	public void updata() {
 		String str = checkBox.getYear()+"-"+checkBox.getMonth()+"-21";
-		Date date = Date.valueOf(str);
-		PayDAO payDAO = new PayDAO();
+		date = Date.valueOf(str);
+		
 		InforDAO inforDAO = new InforDAO();
 		mymodel = new MyTableModel();
 		for(int i=0;i<string.length;i++){
@@ -72,30 +74,29 @@ public class PayTableP extends JPanel implements Tb_panel{
 		//System.out.println(string[i]);
 		}
 		
-		ArrayList<Pay> list = null;
-		ArrayList<Infor> list_1 = null;
-		try {
-			list = payDAO.getTPay(number, date);
-			list_1 = inforDAO.getTInfor(number);
-			
-		} catch (SQLException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
-		java.util.Iterator<Pay> it = list.iterator();
+		
+		
+		list_1 = inforDAO.getTInfor(number);
+		
 		java.util.Iterator<Infor> it_1 = list_1.iterator();
 		while(it_1.hasNext()){
-			Pay pay = null;
-			if(it.hasNext()==true)
-			pay = it.next();
 			Infor infor = it_1.next();
+			Pay pay =null;
+			try {
+				pay = payDAO.getPay(infor.getNumber(), date);
+			} catch (SQLException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+			
+			
 			if(pay!=null)
 			mymodel.addRow(new Object[]{infor.getName(),pay.getBase()+"",pay.getBonus()+"",pay.getDeduct(),pay.getExtra(),
 					pay.getSubsidy(),pay.getOther(),pay.getFact()
 					
 			});
 			else {
-				mymodel.addRow(new Object[]{infor.getName()
+				mymodel.addRow(new Object[]{infor.getName(),0,0,0,0,0,0,0
 						
 				});
 			}
@@ -117,7 +118,34 @@ public class PayTableP extends JPanel implements Tb_panel{
 
 	@Override
 	public void save() {
-		// TODO 自动生成的方法存根
+		ArrayList<Integer> ilist = mymodel.getEditedIndex();
+		java.util.Iterator<Integer> it = ilist.iterator();
+		while(it.hasNext()){
+			int i = it.next().intValue();
+			
+			System.out.println(i);
+			//System.out.println(Integer.parseInt(mymodel.getValueAt(i, 3).toString()));
+			Pay pay = new Pay();
+			
+			
+			pay.setNumber(list_1.get(i).getNumber());
+			pay.setBase(Integer.parseInt(mymodel.getValueAt(i, 1).toString()));
+			pay.setBonus(Integer.parseInt(mymodel.getValueAt(i, 2).toString()));
+			pay.setDeduct(Integer.parseInt(mymodel.getValueAt(i, 3).toString()));			
+			pay.setExtra(Integer.parseInt(mymodel.getValueAt(i, 4).toString()));
+			pay.setSubsidy(Integer.parseInt(mymodel.getValueAt(i, 5).toString()));
+			pay.setOther(Integer.parseInt(mymodel.getValueAt(i, 6).toString()));
+			pay.setFact(Integer.parseInt(mymodel.getValueAt(i, 7).toString()));
+			pay.setDate(date);
+			payDAO.addPay(pay);
+			System.out.println(pay);
+
+				//删除原记录
+				
+				//插入新纪录  
+		}
+		
+		
 		mymodel.unedit();
 	}
 }

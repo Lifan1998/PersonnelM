@@ -178,7 +178,7 @@ public class InforPanel extends JPanel implements Tb_panel{
 		textmarri.setEditable(true);
 		textsex.setEditable(true);
 		textstate.setEditable(true);
-		textnumber.setEditable(true);
+		//textnumber.setEditable(true);
 		texttele.setEditable(true);
 		textwork.setEditable(true);
 		txtname.setEditable(true);
@@ -196,7 +196,7 @@ public class InforPanel extends JPanel implements Tb_panel{
 		textmarri.setEditable(false);
 		textsex.setEditable(false);
 		textstate.setEditable(false);
-		textnumber.setEditable(false);
+		//textnumber.setEditable(false);
 		texttele.setEditable(false);
 		textwork.setEditable(false);
 		txtname.setEditable(false);

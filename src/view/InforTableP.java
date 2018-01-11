@@ -21,6 +21,7 @@ public class InforTableP extends JPanel implements Tb_panel{
 	private JTable table;
 	private String[] str ={"工号","姓名","学历","电话","邮箱","身份证号"};
 	MyTableModel mymodel;
+	ArrayList<Infor> list =null;
 
 	/**
 	 * Create the panel.
@@ -66,7 +67,7 @@ public class InforTableP extends JPanel implements Tb_panel{
 		for(int i=0;i<str.length;i++)
 			mymodel.addColumn(str[i]);
 		InforDAO inforDAO = new InforDAO();
-		ArrayList<Infor> list =null;
+		
 		list = inforDAO.getTInfor(number);
 		java.util.Iterator<Infor> it = list.iterator();
 		while(it.hasNext()){
@@ -91,7 +92,9 @@ public class InforTableP extends JPanel implements Tb_panel{
 
 	@Override
 	public void save() {
-		// TODO 自动生成的方法存根
+		
+				
+		
 		mymodel.unedit();
 	}
 }

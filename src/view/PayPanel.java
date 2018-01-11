@@ -141,6 +141,8 @@ public class PayPanel extends JPanel implements Tb_panel{
 		
 	}
 	private void setDate(Pay pay){
+		if(pay==null)
+			return;
 		Label_1.setText(pay.getBase()+"");
 		//System.out.println(pay);
 		Label_2.setText(pay.getBonus()+"");

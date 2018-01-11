@@ -103,7 +103,7 @@ public ArrayList<Infor> getDeptInfor(String deptNo){
 				+infor1.getHome()+"',birth = '"+infor1.getBirth()+"',state = '"
 				+infor1.getState()+"',woork = '"+infor1.getWork()+"' where number = '"
 				+infor1.getNumber()+"'";
-		System.out.println(sql);
+		//System.out.println(sql);
 		try {
 			db.excuteUpdate(sql);
 		} catch (SQLException e) {
