@@ -111,5 +111,14 @@ public ArrayList<Infor> getDeptInfor(String deptNo){
 			e.printStackTrace();
 		}
 	}	
-	
+	public String getNumber(String name) throws SQLException{
+		String sql = "select number from infor where name = '"+name+"'";
+		ResultSet result = db.excuteQuery(sql);
+		String number = null;
+		while(result.next()){
+			number = result.getString(1);
+		}
+		
+		return number;
+	}
  }

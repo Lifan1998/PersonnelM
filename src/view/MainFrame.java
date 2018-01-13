@@ -52,6 +52,7 @@ public class MainFrame extends JFrame {
 	private SignTableP signTableP_8;//下级考勤表
 	 */	
 	private static JTabbedPane tabbled;//选项卡
+	private JTextField textField;
 	
 	
 	
@@ -132,6 +133,12 @@ public class MainFrame extends JFrame {
 		JLabel label = new JLabel(" 快速访问");
 		label.setFont(new Font("宋体", Font.PLAIN, 12));
 		panel_5.add(label, BorderLayout.CENTER);
+		
+		textField = new JTextField();
+		textField.setText("搜索");
+		textField.setBounds(0, 20, 211, 21);
+		panel.add(textField);
+		textField.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 178, 211, 330);

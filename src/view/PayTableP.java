@@ -90,11 +90,14 @@ public class PayTableP extends JPanel implements Tb_panel{
 			}
 			
 			
-			if(pay!=null)
-			mymodel.addRow(new Object[]{infor.getName(),pay.getBase()+"",pay.getBonus()+"",pay.getDeduct(),pay.getExtra(),
-					pay.getSubsidy(),pay.getOther(),pay.getFact()
-					
-			});
+			if(pay!=null){
+				mymodel.addRow(new Object[]{infor.getName(),pay.getBase()+"",pay.getBonus()+"",pay.getDeduct(),pay.getExtra(),
+						pay.getSubsidy(),pay.getOther(),pay.getFact()
+						
+				});
+				pay = null;
+			
+			}
 			else {
 				mymodel.addRow(new Object[]{infor.getName(),0,0,0,0,0,0,0
 						
@@ -137,8 +140,21 @@ public class PayTableP extends JPanel implements Tb_panel{
 			pay.setOther(Integer.parseInt(mymodel.getValueAt(i, 6).toString()));
 			pay.setFact(Integer.parseInt(mymodel.getValueAt(i, 7).toString()));
 			pay.setDate(date);
-			payDAO.addPay(pay);
-			System.out.println(pay);
+			Pay pay1 = null;
+			try {
+				pay1 = payDAO.getPay(list_1.get(i).getNumber(), date);
+				//System.out.println(pay1);
+				
+			} catch (SQLException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+			if(pay1==null)
+				payDAO.addPay(pay);
+				
+			else
+				payDAO.update(pay);
+			//System.out.println(pay);
 
 				//删除原记录
 				

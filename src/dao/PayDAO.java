@@ -17,7 +17,7 @@ import tools.Tools;
 public class PayDAO {
 
 	private ArrayList<Pay> list;
-	private Pay pay;
+	//private Pay pay;
 	DBO db;
 
 	public PayDAO() {
@@ -37,7 +37,7 @@ public class PayDAO {
 			ResultSet result = db.excuteQuery("select * from pay where number like'"+number1+"' and number not like '"+number2+"'and date ='"+str+"'");
 			
 			while(result.next()){
-				pay = new Pay(result.getString(1),result.getInt(2),result.getInt(3),
+				Pay pay = new Pay(result.getString(1),result.getInt(2),result.getInt(3),
 						result.getInt(4),result.getInt(5),result.getInt(6),result.getInt(7),
 						result.getInt(8),result.getString(9),result.getDate(10)
 						);
@@ -55,6 +55,7 @@ public class PayDAO {
 	
 	public Pay getPay(String number,Date date) throws SQLException {
 		String str = date.toString();
+		Pay pay = null;
 		try {
 			ResultSet result = db.excuteQuery("select * from pay where number='"+number+"'and date ='"+str+"'");
 			while(result.next())
@@ -79,7 +80,23 @@ public class PayDAO {
 			+pay.getOther()+"','"+pay.getFact()+"','"+pay.getState()+"','"+pay.getDate().toString()
 			+"')";
 		
-		//String sql1 = 
+		System.out.println(sql);
+		try {
+			db.excuteUpdate(sql);
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		
+	}
+
+
+	public void update(Pay pay) {
+		String sql = "update pay set base = "+pay.getBase()+",bonus = "+pay.getBonus()+",deduct = "
+				+pay.getDeduct()+",extra = "+pay.getExtra()+",subsidy = "+pay.getSubsidy()+",other = "
+				+pay.getOther()+",fact = "+pay.getFact()+",state = '"+pay.getState()+"' where number = '"
+				+pay.getNumber()+"'and date = '"+pay.getDate().toString()+"';";
+		System.out.println(sql);
 		try {
 			db.excuteUpdate(sql);
 		} catch (SQLException e) {

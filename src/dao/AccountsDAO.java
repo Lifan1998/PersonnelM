@@ -44,5 +44,16 @@ public class AccountsDAO {
 		
 	}
 
+	public void update(Accounts accounts) {
+		try {
+			db.excuteUpdate("update accounts set password = '"+accounts.getPassword()+"' where number = '"+accounts.getNumber()+"'");
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		
+		
+	}
+
 	
 }

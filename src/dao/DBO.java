@@ -19,7 +19,7 @@ public class DBO {
 		try {
 			Class.forName(DBDRIVER);
 			conn = DriverManager.getConnection(DBURL, DBUSER, DBPASS);
-			System.out.println("Connection Successful!");
+			//System.out.println("Connection Successful!");
 			
 		} catch (ClassNotFoundException e) {
 			// TODO 自动生成的 catch 块
